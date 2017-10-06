@@ -78,21 +78,26 @@ class line():
             y1 = float(self.p1y.get())
             x2 = float(self.p2x.get())
             y2 = float(self.p2y.get())
+            x=[x1]
+            y=[y1]
             deltax = x2 - x1
             deltay = y2 - y1
             k = deltay/deltax
-            x=[]
-            y=[]
-            x.append(x1)
-            y.append(y1)
-            i = 0
-            while i <= deltax:
-                  x.append(x1+i)
-                  y.append(y1+i*k)
-                  i+=1            
-            #print(x)
-            #print(y)
+            if abs(k) <= 1:
+                  div = abs(deltax)
+            else:
+                  div = abs(deltay)
+            i = 0      
+            while i <= abs(deltax):
+                  x.append(x[i] + deltax/div)
+                  y.append(y[i] + deltay/div)
+                  i+=1
             plt.scatter(x,y)
             plt.grid(True)  #加上网格
+            plt.axis('equal')
             plt.show()
-
+      def Bresenham(self):
+            x1 = float(self.p1x.get())
+            y1 = float(self.p1y.get())
+            x2 = float(self.p2x.get())
+            y2 = float(self.p2y.get())
